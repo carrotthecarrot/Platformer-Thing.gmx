@@ -27,52 +27,17 @@
             <kind>1</kind>
             <string>///Initialize Variables
 hspd= 0;
-grav = 0.2;
-vspd = 0;
+grav = 0.5;
+vsp = 0;
 
-jumpspeed = 5;
-xspeed = 5;
+jumpspeed = 9;
+movespeed = 4;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Movement in x-dir
-key_left = keyboard_check(ord("A"));
-key_right = keyboard_check(ord("D"));
-
-move = key_left + key_right;
-hspd = move * xspeed;
-
-if (place_meeting(x + hspd, y, obj_ground)) {
-    while (!place_meeting(x * sign(hspd), y, obj_ground)) {
-        x += sign(hspd);
-    }
-    hspd = 0;
-}
-
-x += hspd;
-</string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -113,27 +78,128 @@ y = clamp(y, sprite_height/2 ,room_height - (sprite_height/2));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Movement in y-dir
-key_jump = keyboard_check(ord("W"))
+            <string>///Movement x dir
+//Input
+key_left = keyboard_check(vk_left);
+key_right = keyboard_check(vk_right);
 
-if (vspd &lt; 10) {
-    vspd += grav;
+
+//Moving
+move = key_left + key_right;
+hspd = move * movespeed;
+
+
+//Horizontal
+if (place_meeting(x + hspd, y, obj_ground)) {
+    while (!place_meeting(x + sign(hspd), y, obj_ground)) {
+        x += sign(hspd);
+    }
+    hspd = 0;
 }
 
+x += hspd;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Movement y dir
+//Input
+key_jump = keyboard_check(vk_up);
+
+
+//Jumping
+if (vsp &lt; 10) vsp += grav;
 if (place_meeting(x, y + 1, obj_ground)) {
-    vspd = key_jump * -jumpspeed;
+    vsp = key_jump * -jumpspeed;
 }
 
-if (place_meeting(x, y + vspd, obj_ground)){
-   while (!place_meeting(x, y * sign(vspd), obj_ground)){
-    y += sign(vspd);
+
+//Vertical
+if (place_meeting(x, y + vsp, obj_ground))
+{
+   while (!place_meeting(x, y + sign(vsp), obj_ground))
+   {
+    y += sign(vsp);
    }
-   vspd = 0;
+   vsp = 0;
 }
 
-y += vspd;
+y += vsp;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Testing
+/*key_left = keyboard_check(ord("A"));
+key_right = keyboard_check(ord("D"));
 
+if key_left {
+hspeed = -4.5;
+}
+
+else if key_right {
+hspeed = 4.5;
+}
+
+else hspeed = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check_pressed(ord('R'))) {
+    game_restart();
+} 
 </string>
           </argument>
         </arguments>
