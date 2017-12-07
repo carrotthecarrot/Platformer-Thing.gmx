@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_char</sprite>
     <sprite>sprites\spr_tile</sprite>
+    <sprite>sprites\spr_switch</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>

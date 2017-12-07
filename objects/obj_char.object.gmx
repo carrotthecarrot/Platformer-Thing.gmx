@@ -29,7 +29,6 @@
 hspd= 0;
 grav = 0.5;
 vsp = 0;
-
 jumpspeed = 9;
 movespeed = 4;
 </string>
@@ -80,12 +79,11 @@ y = clamp(y, sprite_height/2 ,room_height - (sprite_height/2));
             <kind>1</kind>
             <string>///Movement x dir
 //Input
-key_left = keyboard_check(vk_left);
 key_right = keyboard_check(vk_right);
-
+key_left = keyboard_check(vk_left);
 
 //Moving
-move = key_left + key_right;
+move = key_right;
 hspd = move * movespeed;
 
 
