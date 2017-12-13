@@ -9,12 +9,20 @@
     <sprite>sprites\spr_char</sprite>
     <sprite>sprites\spr_tile</sprite>
     <sprite>sprites\spr_switch</sprite>
+    <sprite>sprites\spr_snek</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_character.gml</script>
+    <script>scripts\scr_win.gml</script>
+    <script>scripts\script2.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_char</object>
     <object>objects\obj_ground</object>
+    <object>objects\obj_switch</object>
+    <object>objects\obj_snek</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_lvl1</room>
